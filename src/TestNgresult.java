@@ -117,7 +117,22 @@ public class TestNgresult {
 				}
 
 			}
-			
+			public void logOut(){
+				driver.findElement(By.xpath(".//*[@id='horde-logout']/a")).click();
+				String actual = driver.getTitle();
+				System.out.println(actual);
+				String expected= "Horde :: Log in";
+				Assert.assertEquals(actual, expected);
+				if(expected.equals(actual)){
+					data.put("5",new Object[]{"4","Click on logout","You have been logged out should display","You have been logged out displayed","pass"});
+					writeToExcel(data);
+				}
+				else{
+					data.put("5",new Object[]{"4","Click on logout","You have been logged out should display ","You have been logged outnot displayed","Fail"});
+					writeToExcel(data);
+				}
+
+			}
 			public static void writeToExcel(Map<String, Object[]> data){
 				Set<String> keyset = data.keySet();
 				int rownum = 0;
